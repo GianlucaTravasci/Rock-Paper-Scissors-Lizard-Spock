@@ -29,6 +29,7 @@ const choices = {
   spock: { name: 'Spock', defeats: ['scissors', 'rock'] },
 };
 
+
 let computerChoice = '';
 let playerScoreNumber = 0;
 let computerScoreNumber = 0;
