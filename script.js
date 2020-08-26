@@ -76,6 +76,33 @@ function displayComputerPick() {
   }
 }
 
+function displayUserPick(playerChoice) {
+  switch (playerChoice) {
+    case 'rock':
+      playerRock.classList.add('selected');
+      playerChoiceElemente.textContent = '--- Rock'
+      break;
+    case 'paper':
+      playerPaper.classList.add('selected');
+      playerChoiceElemente.textContent = '--- Paper'
+      break;
+    case 'scissors':
+      playerScissor.classList.add('selected');
+      playerChoiceElemente.textContent = '--- Scissors'
+      break;
+    case 'lizard':
+      playerLizard.classList.add('selected');
+      playerChoiceElemente.textContent = '--- Lizzard'
+      break;
+    case 'spock':
+      playerSpock.classList.add('selected');
+      playerChoiceElemente.textContent = '--- Spock'
+      break;
+    default:
+      break;
+  }
+}
+
 function checkWinner(playerChoice) {
   if(playerChoice === computerChoice) {
     resultText.textContent = 'Tie!!';
