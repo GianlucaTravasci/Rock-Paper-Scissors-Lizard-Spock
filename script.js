@@ -19,6 +19,8 @@ const computerScissor = document.getElementById('computerScissor');
 const computerLizard = document.getElementById('computerLizard');
 const computerSpock = document.getElementById('computerSpock');
 
+const allGameIcons = document.querySelectorAll('.far');
+
 const choices = {
   rock: { name: 'Rock', defeats: ['scissors', 'lizard'] },
   paper: { name: 'Paper', defeats: ['rock', 'spock'] },
@@ -31,6 +33,12 @@ let computerChoice = '';
 let playerScoreNumber = 0;
 let computerScoreNumber = 0;
 
+//reset the selected class after all match
+function resetSelected() {
+  allGameIcons.forEach(icons => {
+    icons.classList.remove('selected');
+  });
+} 
 
 // Computer choice his moves 
 function computerRandomChoice() {
