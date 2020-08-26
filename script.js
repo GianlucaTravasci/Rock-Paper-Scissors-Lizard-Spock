@@ -1,6 +1,6 @@
 //Game status
 const playerScoreElement = document.getElementById('playerScore');
-const playerChoiceElemente = document.getElementById('playerChoice');
+const playerChoiceElement = document.getElementById('playerChoice');
 const computerScoreElement = document.getElementById('computerScore');
 const computerChoiceElement = document.getElementById('computerChoice');
 const resultText = document.getElementById('resultText')
@@ -40,6 +40,19 @@ function resetSelected() {
     icons.classList.remove('selected');
   });
 } 
+
+//reset the game after the refrash button has been pressed
+function resetAll() {
+  playerScoreNumber = 0;
+  computerScoreNumber = 0;
+  playerChoiceElement.textContent= '';
+  computerChoiceElement.textContent='';
+  playerScoreElement.textContent=playerScoreNumber;
+  computerScoreElement.textContent=computerScoreNumber;
+  resultText.textContent='';
+  resetSelected()
+}
+window.resetAll = resetAll;
 
 // Computer choice his moves 
 function computerRandomChoice() {
@@ -86,47 +99,56 @@ function displayComputerPick() {
 }
 
 function displayUserPick(playerChoice) {
+  workFlow(playerChoice)
   switch (playerChoice) {
     case 'rock':
       playerRock.classList.add('selected');
-      playerChoiceElemente.textContent = '--- Rock'
+      playerChoiceElement.textContent = '--- Rock'
       break;
     case 'paper':
       playerPaper.classList.add('selected');
-      playerChoiceElemente.textContent = '--- Paper'
+      playerChoiceElement.textContent = '--- Paper'
       break;
     case 'scissors':
       playerScissor.classList.add('selected');
-      playerChoiceElemente.textContent = '--- Scissors'
+      playerChoiceElement.textContent = '--- Scissors'
       break;
     case 'lizard':
       playerLizard.classList.add('selected');
-      playerChoiceElemente.textContent = '--- Lizzard'
+      playerChoiceElement.textContent = '--- Lizzard'
       break;
     case 'spock':
       playerSpock.classList.add('selected');
-      playerChoiceElemente.textContent = '--- Spock'
+      playerChoiceElement.textContent = '--- Spock'
       break;
     default:
       break;
   }
 }
+window.displayUserPick = displayUserPick;
 
 function checkWinner(playerChoice) {
   if(playerChoice === computerChoice) {
     resultText.textContent = 'Tie!!';
   } else {
     const choice = choices[playerChoice];
-    if(choice.defeats.indexOf(computerChoice) < -1) {
+    if(choice.defeats.indexOf(computerChoice) > -1) {
       playerScoreNumber++;
       resultText.textContent = 'You Won!';
       playerScoreElement.textContent = playerScoreNumber;
     } else {
       computerScoreNumber++;
       resultText.textContent = 'You Lost!';
-      computerScoreElement = computerScoreNumberM
+      computerScoreElement.textContent = computerScoreNumber;
     }
   }
 }
 
+function workFlow(playerChoice) {
+  resetSelected();
+  computerRandomChoice();
+  displayComputerPick();
+  checkWinner(playerChoice);
+}
 
+resetAll();
